@@ -37,9 +37,13 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
-  secret: 'ambc@!vsmkv#!&*!#EDNAnsv#!$()_*#@',
+  key: 'sid',
+  secret: 'secret',
   resave: false,
-  saveUninitialized: true
+  saveUnintialized: true,
+  cookie: {
+    maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+  }
 }));
 
 /**
@@ -47,14 +51,15 @@ app.use(session({
  */
 
 app.get('/', (req, res) => {
-  const sess = req.session;
-
-  console.log(req.body);
-
-  res.render('login', {
-    nickname: sess.user_uid+1 ? users[sess.user_uid]['user_nickname'] : '',
-    login_success: true
-  });
+  if(typeof(req.session.userid) !== 'undefined')
+  {
+   res.redirect('/index');
+  }
+  else {
+    res.render('login', {
+      login_success: true,
+    });
+  }
 })
 
 /**
@@ -69,8 +74,6 @@ app.use(express.static('vendor'));
  */
 
 app.post('/login', (req, res) => {
-
-  console.log('로그인 시도');
 
   const connection = mysql.createConnection({
     host:'promise-admin.chtx7mqxptbf.us-east-2.rds.amazonaws.com',
@@ -93,24 +96,61 @@ app.post('/login', (req, res) => {
       console.log(err);
       return;
     }
-    
     if(rows.length >= 1) {
       console.log('로그인 성공, 관리자 페이지로 이동합니다.');
+      // 세션 설정
+      req.session.userid = id;
       //페이지 이동
-      res.render('index',{login_success:true});
+      res.redirect('/index');
     }
     else {
-      console.log('로그인 실패 ㅠ')
-      res.render('login', {login_success:false});
+      console.log('로그인이 실패하였습니다. 아이디와 패스워드를 확인해 주세요')
+      res.render('login', { login_success:false });
     }
   });
   connection.end();
 });
 
+// 세션 쿠키의 세션에 id가 존재하는지 확인한다.
+// 만약 아이디가 존재한다면 (login 중일때 ) 항상 index 뷰로 이동한다.
+// 만약 아이디가 존재하지 않는다면 login 뷰로 이동한다.
 
 app.get('/login', (req, res) => {
-  res.render('login', { login_success:true });
+
+  console.log('[get /login]');
+  console.log(req.session);
+  if(typeof(req.session.userid) !== 'undefined')
+  {
+    console.log('로그인 세션 존재 => index.ejs 출력');
+    res.redirect('/index');
+  }
+  else {
+    console.log('로그인 세션 존재하지 않음 => login.ejs 출력');
+    res.render('login', { login_success:true });
+  }
+
 });
+
+// index 페이지 랜더링
+app.get('/index', (req, res) => {
+
+  if(typeof(req.session.userid) !== 'undefined')
+  {
+    res.render('index');
+  }
+  else {
+    res.render('login', {
+      login_success: true,
+    });
+  }
+})
+
+// logout을 수행하게 되면 session 을 삭제한다.
+app.post('/logout',(req, res) => {
+  req.session.destroy();  // 세션 삭제
+  res.clearCookie('sid'); // 세션 쿠키 삭제
+  res.redirect('/login');
+})
 
 app.listen(3000)
 

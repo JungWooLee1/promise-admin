@@ -214,10 +214,12 @@
             </div>
           </form>
         </li>
+        <form name="logout_form" action="/logout" method="POST">
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <a onclick="javascript:document.logout_form.submit();" class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
+        </form>
       </ul>
     </div>
   </nav>
