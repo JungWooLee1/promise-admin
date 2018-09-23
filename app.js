@@ -82,21 +82,19 @@ app.post('/login', (req, res) => {
     password:'sj940531!',
     database:'promise_admin'
   });
-
   connection.connect();
 
   const id = req.body.id;
   const password = req.body.password;
-
   const sql  = `select * from admin_users where id='${id}' and password ='${password}'`;
   console.log(sql);
 
-  connection.query(sql, function (err, rows, field) {
-    if (err) {
-      console.log(err);
+  connection.query(sql, function (error, results, fields) {
+    if (error) {
+      console.log(error);
       return;
     }
-    if(rows.length >= 1) {
+    if(results.length >= 1) {
       console.log('로그인 성공, 관리자 페이지로 이동합니다.');
       // 세션 설정
       req.session.userid = id;
@@ -111,10 +109,12 @@ app.post('/login', (req, res) => {
   connection.end();
 });
 
-// 세션 쿠키의 세션에 id가 존재하는지 확인한다.
-// 만약 아이디가 존재한다면 (login 중일때 ) 항상 index 뷰로 이동한다.
-// 만약 아이디가 존재하지 않는다면 login 뷰로 이동한다.
 
+/**
+ * 세션 쿠키의 세션에 id가 존재하는지 확인한다.
+ * 만약 아이디가 존재한다면 (login 중일때 ) 항상 index 뷰로 이동한다.
+ * 만약 아이디가 존재하지 않는다면 login 뷰로 이동한다.
+ **/
 app.get('/login', (req, res) => {
 
   console.log('[get /login]');
@@ -131,8 +131,13 @@ app.get('/login', (req, res) => {
 
 });
 
-// index 페이지 랜더링
+/**
+ * index 페이지를 렌더링 합니다.
+ */
 app.get('/index', (req, res) => {
+
+
+
 
   if(typeof(req.session.userid) !== 'undefined')
   {
@@ -151,6 +156,58 @@ app.post('/logout',(req, res) => {
   res.clearCookie('sid'); // 세션 쿠키 삭제
   res.redirect('/login');
 })
+
+/**
+ * 유저 정보 페이지를 그려줍니다.
+ * res.render 로 유저 정보에 대한 데이터를 mysql 에서 가져와 object 형태로 넘겨줍니다.
+ */
+
+
+app.get('/table', (req, res) => {
+
+  // db 연결
+  const connection = mysql.createConnection({
+    host:'promise-admin.chtx7mqxptbf.us-east-2.rds.amazonaws.com',
+    port:'3306',
+    user:'jw910911',
+    password:'sj940531!',
+    database:'promise_admin'
+  });
+  connection.connect();
+
+  // 쿼리문 전달
+  const sql  = `SELECT * FROM users`;
+  connection.query(sql, function (error, results, fields) {
+    if (error) {
+      console.log(error);
+      return;
+    }
+    else {
+      if(isOkSession(req.session.userid))
+      {
+        res.render('table', {results: results});
+      }
+      else {
+        res.render('login', {
+          login_success: true
+        })
+      }
+    }
+  });
+  connection.end();
+});
+
+// Session 확인 메서드
+
+function isOkSession(sessionId) {
+  if(typeof(sessionId) !== 'undefined') {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 
 app.listen(3000)
 
