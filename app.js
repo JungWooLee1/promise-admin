@@ -185,7 +185,7 @@ app.get('/table', (req, res) => {
     else {
       if(isOkSession(req.session.userid))
       {
-        res.render('table', {results: results});
+        res.render('table', {users_info: results});
       }
       else {
         res.render('login', {

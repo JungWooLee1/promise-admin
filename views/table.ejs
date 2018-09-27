@@ -19,6 +19,30 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+  <!-- Modal 대화상자 -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          modal click Jungwoo Lee
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="/">약속 연구소 관리자 페이지</a>
@@ -157,29 +181,49 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>이름</th>
+                  <th>닉네임</th>
+                  <th>휴대폰</th>
+                  <th>이메일</th>
+                  <th>성별</th>
+                  <th>주소</th>
+                  <th>생일</th>
+                  <th>나이</th>
+                  <th>직업</th>
+                  <th>추천인코드</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                  <th>이름</th>
+                  <th>닉네임</th>
+                  <th>휴대폰</th>
+                  <th>이메일</th>
+                  <th>성별</th>
+                  <th>주소</th>
+                  <th>생일</th>
+                  <th>나이</th>
+                  <th>직업</th>
+                  <th>추천인코드</th>
                 </tr>
-              </tfoot>
+              </tfoot>ㅠ
               <tbody>
-                <%
 
+                <% users_info.forEach(function(user) { %>
+                  <tr data-toggle="modal" data-target="#exampleModal">
+                    <td><%= user.name %></td>
+                    <td><%= user.nickname %></td>
+                    <td><%= user.phone_number %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.gender %></td>
+                    <td><%= user.address %></td>
+                    <td><%= user.birthday %></td>
+                    <td><%= user.age %></td>
+                    <td><%= user.position %></td>
+                    <td><%= user.rec_code%></td>
+                  </tr>
 
-                %>
+                <% }) %>
               </tbody>
             </table>
           </div>
@@ -219,6 +263,7 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
+
     <script src="jquery/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
