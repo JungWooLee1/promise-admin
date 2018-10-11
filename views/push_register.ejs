@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+
+    <style>
+        /* 텍스트 글자 세기 css */
+        .wrap {
+            width: 300px;
+            height: auto;
+            position: relative;
+            display: inline-block;
+        }
+        .wrap textarea {
+            width: 100%;
+            resize: none;
+            min-height: 4.5em;
+            line-height:1.6em;
+            max-height: 9em;
+        }
+        .wrap span {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        #counter {
+            background:rgba(255,0,0,0.5);
+            border-radius: 0.5em;
+            padding: 0 .5em 0 .5em;
+            font-size: 0.75em;
+        }
+
+        #ui-datepicker-div {
+            background-color:#EAEAEA
+        }
+        ::placeholder {
+            text-align: center;
+        }
+        /* 다시보지 않기 bootstrap css custom */
+        .form-check-inline {
+            margin-right:0px;
+        }
+    </style>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<% include ./partials/nav %>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">push_input</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> 푸시 등록
+            </div>
+            <div class="card-body">
+                <div style="text-align:center">
+                    <form id="popup_form" action="register" method="post">
+
+                    <div style="width:25%;height:450px;float:left; margin-left:6%;display:flex;
+                    flex-direction: column; justify-content: center;  align-items: center;">
+                        <p>
+                            <input name ="file" id="input-image" type=file required>
+                        </p>
+                        <div id="holder">
+                           <!--  <img class="rounded" alt="no image"/> -->
+                        </div>
+                    </div>
+                    <div style="width:65%;height:100%;float:right">
+                            <table style="width:100%" class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td style="width:20%">
+                                        <select class="form-control-sm" >
+                                            <option>분류</option>
+                                            <option>실버</option>
+                                            <option>골드</option>
+                                            <option>플레티넘</option>
+                                        </select>
+                                    </td>
+                                    <td colspan="4">
+                                        <input class=" form-control" id="title"  name="title" style="width:90%" type="text" placeholder="제목" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <input class="form-control" id='link' name="link" style="width:95%" type="text" placeholder="링크 url" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">노출 기간</td>
+                                    <td style="width:25%"><input class='form-control datepicker' name="start_date" id="start_date" style="width:80%" data-date-format="dd/mm/yyyy"></td>
+                                    <td style="width:25%">
+                                        <select id="start_ampm" class="form-control-sm" >
+                                            <option>오전</option>
+                                            <option>오후</option>
+                                        </select>
+                                    </td>
+                                    <td style="width:15%">
+                                        <select id="start_time" class="form-control-sm" >
+                                            <option>1시</option>
+                                            <option>2시</option>
+                                            <option>3시</option>
+                                            <option>4시</option>
+                                            <option>5시</option>
+                                            <option>6시</option>
+                                            <option>7시</option>
+                                            <option>8시</option>
+                                            <option>9시</option>
+                                            <option>10시</option>
+                                            <option>11시</option>
+                                            <option>12시</option>
+                                        </select>
+                                    </td>
+                                    <td style="width:16.66%">부터</td>
+                                </tr>
+                                <tr>
+                                    <td><input class='form-control datepicker2' name="end_date" id="end_date" style="width:80%" data-date-format="dd/mm/yyyy"></td>
+                                    <td>
+                                        <select id="end_ampm" class="form-control-sm" >
+                                            <option>오전</option>
+                                            <option>오후</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select id="end_time" class="form-control-sm" >
+                                            <option>1시</option>
+                                            <option>2시</option>
+                                            <option>3시</option>
+                                            <option>4시</option>
+                                            <option>5시</option>
+                                            <option>6시</option>
+                                            <option>7시</option>
+                                            <option>8시</option>
+                                            <option>9시</option>
+                                            <option>10시</option>
+                                            <option>11시</option>
+                                            <option>12시</option>
+                                        </select>
+                                    </td>
+                                    <td style="width:15%">까지</td>
+                                </tr>
+                                <tr>
+                                    <td>  <span style="margin-right:10px">다시 보지않기</span></td>
+                                    <td colspan="2">
+                                       <span>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                           </div>
+                                            <div class="form-check form-check-inline" style="margin-right:20px" >비허용 </div>
+                                            <div class="form-check form-check-inline" style="">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            </div>
+                                            <div class="form-check form-check-inline" >허용</div>
+                                            <div class="form-check form-check-inline" style="margin-left:8px">
+                                            </div>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input style="width:100%" class="form-control" id="number" name="number" type="number" />
+                                    </td>
+                                    <td>시간 뒤 노출</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div style="margin-top: 5%">
+                                <span><input type="button" class="btn" value="취소"/></span>
+                                <span><input type="submit" class="btn btn-primary" value="등록"/></span>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                <small>Copyright © Your Website 2018</small>
+            </div>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core plugin JavaScript-->
+    <script type="text/javascript" src="jquery/jquery.min.js"></script>
+    <!-- 유효성 검사를 위한 jquery 라이브러리 -->
+    <script type="text/javascript" src="jquery/jquery.validate.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="datatables/jquery.dataTables.js"></script>
+    <script src="datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+    <!-- -->
+    <script src="js/sb-admin-datatables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- 메인 자바스크립트 -->
+    <script src="js/scripts/push_register.js"></script>
+
+</div>
+</body>
+
+</html>

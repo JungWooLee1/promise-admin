@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin - Start Bootstrap Template</title>
+
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <style>
+    /* 텍스트 글자 세기 css */
+    .wrap {
+      width: 300px;
+      height: auto;
+      position: relative;
+      display: inline-block;
+    }
+    .wrap textarea {
+      width: 100%;
+      resize: none;
+      min-height: 4.5em;
+      line-height:1.6em;
+      max-height: 9em;
+    }
+    .wrap span {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+    #counter {
+      background:rgba(255,0,0,0.5);
+      border-radius: 0.5em;
+      padding: 0 .5em 0 .5em;
+      font-size: 0.75em;
+    }
+
+    #ui-datepicker-div {
+      background-color:#EAEAEA
+    }
+  </style>
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<% include ./partials/nav %>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+      </li>
+      <li class="breadcrumb-item active">push_input</li>
+    </ol>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> 푸시 발송
+      </div>
+      <div class="card-body">
+        <table style="width:100%" class="table  table-bordered">
+          <tbody>
+
+          <tr>
+            <td scope="row" style=" font-weight: bold" class="table-primary">회원 유형</td>
+            <td style="padding-top: 8px">
+                <span>
+                <select class="form-control-sm" >
+                  <option>일반</option>
+                  <option>실버</option>
+                  <option>골드</option>
+                  <option>플레티넘</option>
+                </select>
+                </span>
+            </td>
+            <td></td>
+            <td style=" font-weight: bold"><span>성별 유형</span></td>
+            <td style="padding-top: 8px">
+                <span>
+                  <select class="form-control-sm" >
+                    <option>남자</option>
+                    <option>여자</option>
+                  </select>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">가입 기간</th>
+            <td>
+              <span><input type="checkbox"></span>
+              <span>전체</span>
+            </td>
+            <td>
+              <input style="width:100%" data-date-format="dd/mm/yyyy" id="datepicker">
+            </td>
+            <td>~</td>
+            <td>
+              <input style="width:100%" data-date-format="dd/mm/yyyy" id="datepicker2">
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">연령대 설정</th>
+            <td>
+              <select class="form-control-sm" >
+                <option>전체</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+                <option>32</option>
+                <option>33</option>
+                <option>34</option>
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+                <option>43</option>
+                <option>44</option>
+                <option>45</option>
+                <option>46</option>
+                <option>47</option>
+                <option>48</option>
+                <option>49</option>
+                <option>50</option>
+                <option>51</option>
+                <option>52</option>
+                <option>53</option>
+                <option>54</option>
+                <option>55</option>
+                <option>56</option>
+                <option>57</option>
+                <option>58</option>
+                <option>59</option>
+                <option>60</option>
+              </select>
+            </td>
+            <td>
+              ~
+            </td>
+            <td>
+              <select class="form-control-sm" >
+                <option>전체</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+                <option>32</option>
+                <option>33</option>
+                <option>34</option>
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+                <option>43</option>
+                <option>44</option>
+                <option>45</option>
+                <option>46</option>
+                <option>47</option>
+                <option>48</option>
+                <option>49</option>
+                <option>50</option>
+                <option>51</option>
+                <option>52</option>
+                <option>53</option>
+                <option>54</option>
+                <option>55</option>
+                <option>56</option>
+                <option>57</option>
+                <option>58</option>
+                <option>59</option>
+                <option>60</option>
+                <option>60세 이상</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">지역</th>
+            <td>
+              <select  name='area' onchange="change(this.selectedIndex);"  class="form-control-sm" >
+                <option value='전체'>전체</option>
+                <option value='서울'>서울</option>
+                <option value='부산'>부산</option>
+                <option value='대구'>대구</option>
+                <option value='인천'>인천</option>
+                <option value='광주'>광주</option>
+                <option value='대전'>대전</option>
+                <option value='울산'>울산</option>
+                <option value='경기'>경기</option>
+                <option value='강원'>강원</option>
+                <option value='충북'>충북</option>
+                <option value='충남'>충남</option>
+                <option value='전북'>전북</option>
+                <option value='전남'>전남</option>
+                <option value='경북'>경북</option>
+                <option value='경남'>경남</option>
+                <option value='제주'>제주</option>
+              </select>
+            </td>
+            <td>
+              <select id='county'  class="form-control-sm">
+                <option value='전지역'>전지역</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">메세지</th>
+            <td colspan="5">
+              <div class="wrap">
+                <textarea id="content" maxlength="300"></textarea>
+                <span id="counter">###</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" style="width:16.66%">발송 유형</th>
+            <td style="width:16.66%">
+              <span><input type="checkbox"></span>
+              <span>즉시</span>
+            </td>
+            <td style="width:16.66%">
+              <span><input type="checkbox"></span>
+              <span>예약</span>
+            </td>
+            <td style="width:16.66%">
+              <input style="width:100%" data-date-format="dd/mm/yyyy" id="datepicker3">
+            </td>
+            <td style="width:16.66%">
+              <select class="form-control-sm" >
+                <option>오전</option>
+                <option>오후</option>
+              </select>
+            </td>
+            <td style="width:16.66%">
+              <select class="form-control-sm" >
+                <option>1시</option>
+                <option>2시</option>
+                <option>3시</option>
+                <option>4시</option>
+                <option>5시</option>
+                <option>6시</option>
+                <option>7시</option>
+                <option>8시</option>
+                <option>9시</option>
+                <option>10시</option>
+                <option>11시</option>
+                <option>12시</option>
+              </select>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div style="text-align:center">
+          <span><button class="btn btn-primary">취소</button></span>
+          <span><button class="btn btn-primary">발송</button></span>
+
+        </div>
+
+      </div>
+      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+  </div>
+  <!-- /.container-fluid-->
+  <!-- /.content-wrapper-->
+  <footer class="sticky-footer">
+    <div class="container">
+      <div class="text-center">
+        <small>Copyright © Your Website 2018</small>
+      </div>
+    </div>
+  </footer>
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+  </a>
+  <!-- Logout Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="jquery/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="jquery-easing/jquery.easing.min.js"></script>
+  <!-- Page level plugin JavaScript-->
+  <script src="datatables/jquery.dataTables.js"></script>
+  <script src="datatables/dataTables.bootstrap4.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+  <!-- Custom scripts for this page-->
+  <script src="js/sb-admin-datatables.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+      $( "#datepicker" ).datepicker();
+      $( "#datepicker2" ).datepicker();
+      $("#datepicker3").datepicker();
+    } );
+  </script>
+
+  <!-- region-module.js -->
+  <script>
+    var cnt = new Array();
+    cnt[0] = new Array('전지역');
+    cnt[1] = new Array('전체','강남구','강동구','강북구','강서구','관악구','광진구','구로구','금천구','노원구','도봉구','동대문구','동작구','마포구','서대문구','서초구','성동구','성북구','송파구','양천구','영등포구','용산구','은평구','종로구','중구','중랑구');
+    cnt[2] = new Array('전체','강서구','금정구','남구','동구','동래구','부산진구','북구','사상구','사하구','서구','수영구','연제구','영도구','중구','해운대구','기장군');
+    cnt[3] = new Array('전체','남구','달서구','동구','북구','서구','수성구','중구','달성군');
+    cnt[4] = new Array('전체','계양구','남구','남동구','동구','부평구','서구','연수구','중구','강화군','옹진군');
+    cnt[5] = new Array('전체','광산구','남구','동구','북구','서구');
+    cnt[6] = new Array('전체','대덕구','동구','서구','유성구','중구');
+    cnt[7] = new Array('전체','남구','동구','북구','중구','울주군');
+    cnt[8] = new Array('전체','고양시','과천시','광명시','구리시','군포시','남양주시','동두천시','부천시','성남시','수원시','시흥시','안산시','안양시','오산시','의왕시','의정부시','평택시','하남시','가평군','광주시','김포시','안성시','양주군','양평군','여주군','연천군','용인시','이천군','파주시','포천시','화성시');
+    cnt[9] = new Array('전체','강릉시','동해시','삼척시','속초시','원주시','춘천시','태백시','고성군','양구군','양양군','영월군','인제군','정선군','철원군','평창군','홍천군','화천군','황성군');
+    cnt[10] = new Array('전체','제천시','청주시','충주시','괴산군','단양군','보은군','영동군','옥천군','음성군','진천군','청원군');
+    cnt[11] = new Array('전체','공주시','보령시','서산시','아산시','천안시','금산군','논산군','당진군','부여군','서천군','연기군','예산군','청양군','태안군','홍성군');
+    cnt[12] = new Array('전체','군산시','김제시','남원시','익산시','전주시','정읍시','고창군','무주군','부안군','순창군','완주군','임실군','장수군','진안군');
+    cnt[13] = new Array('전체','광양시','나주시','목포시','순천시','여수시','여천시','강진군','고흥군','곡성군','구례군','담양군','무안군','보성군','신안군','여천군','영광군','영암군','완도군','장성군','장흥군','진도군','함평군','해남군','화순군');
+    cnt[14] = new Array('전체','경산시','경주시','구미시','김천시','문겅시','상주시','안동시','영주시','영천시','포항시','고령군','군위군','봉화군','성주군','영덕군','영양군','예천군','울릉군','울진군','의성군','청도군','청송군','칠곡군');
+    cnt[15] = new Array('전체','거제시','김해시','마산시','밀양시','사천시','울산시','진주시','진해시','창원시','통영시','거창군','고성군','남해군','산청군','양산시','의령군','창녕군','하동군','함안군','함양군','합천군');
+    cnt[16] = new Array('전체','서귀포시','제주시','남제주군','북제주군');
+
+    function change(add) {
+      let sel=document.getElementById('county');
+      console.log(sel);
+      for (let i=sel.length-1; i>=0; i--){
+        sel.options[i] = null
+      }
+      for (let i=0; i < cnt[add].length;i++){
+        sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
+      }
+    }
+  </script>
+
+  <!-- input-textarea-module.js -->
+  <script>
+    $(function() {
+      $('#content').keyup(function (e){
+        var content = $(this).val();
+        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+        $('#counter').html(content.length + '/300');
+      });
+      $('#content').keyup();
+    });
+  </script>
+</div>
+</body>
+
+</html>

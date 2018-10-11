@@ -197,6 +197,40 @@ app.get('/table', (req, res) => {
   connection.end();
 });
 
+
+
+/**
+ * 팝업 전송 화면을 보여줍니다.
+ */
+
+app.get('/push_input', (req, res)=> {
+  if(isOkSession(req.session.userid))
+  {
+    res.render('push_input');
+  }
+  else {
+    res.render('login', {
+      login_success: true
+    })
+  }
+});
+
+/**
+ * 팝업 등록 화면을 보여줍니다.
+ */
+
+app.get('/push_register', (req, res) => {
+  if(isOkSession(req.session.userid))
+  {
+    res.render('push_register');
+  }
+  else {
+    res.render('login', {
+      login_success: true
+    })
+  }
+});
+
 // Session 확인 메서드
 
 function isOkSession(sessionId) {
